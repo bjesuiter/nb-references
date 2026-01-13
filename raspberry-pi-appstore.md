@@ -1,7 +1,8 @@
 # Raspberry Pi App Store Options
 
 ## Recommended: Pi-Apps
-- GitHub: https://github.com/Botspot/pi-apps
+- https://github.com/Botspot/pi-apps
+- Web: https://pi-apps.io
 - Web: https://pi-apps.io
 - GUI app store for Raspberry Pi
 - Large collection of pre-compiled apps
