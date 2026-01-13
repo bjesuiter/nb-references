@@ -3,7 +3,7 @@ title: Pi Coding Agent - Lean Customizable Orchestration
 anchor: pi coding agent lean orchestration
 tags: coding-agent, orchestration, lean, clawdbot, pi
 description: A lean and customizable coding agent, potentially useful for orchestration in Clawdbot
-source_url: (link to be added by JB)
+source_url: https://shittycodingagent.ai/
 ---
 
 ## Pi Coding Agent
