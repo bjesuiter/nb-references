@@ -1,8 +1,8 @@
 ---
-title: exe.dev - Persistent Development Containers
-anchor: Persistent Dev Containers via SSH/Web
-tags: [dev-container, ssh, cloud, exe-dev, development]
-description: Persistent development containers accessible via SSH or web browser
+title: exe.dev - Super Simple VM Hosting with CLI
+anchor: Simple VM Hosting with CLI Deployment
+tags: [dev-container, ssh, cloud, exe-dev, development, vm, infrastructure]
+description: Super simple VM hosting with CLI for deployment - persistent development containers
 source_url: https://exe.dev/docs/list
 ---
 
@@ -12,6 +12,7 @@ source_url: https://exe.dev/docs/list
 exe.dev hosts persistent development containers accessible via SSH or a web browser. Provides serverful environments with persistent disks and VMs (vs serverless).
 
 ### Key Features
+- **Super simple VM hosting** with CLI for deployment
 - **Persistent VMs** with continuous operation
 - **HTTP proxies** for public/private content publishing
 - **Custom domains** with built-in auth ("Login with exe")
