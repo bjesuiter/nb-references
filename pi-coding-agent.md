@@ -1,20 +1,46 @@
 ---
-title: Pi Coding Agent - Lean Customizable Orchestration
-anchor: pi coding agent lean orchestration
-tags: coding-agent, orchestration, lean, clawdbot, pi
-description: A lean and customizable coding agent, potentially useful for orchestration in Clawdbot
-source_url: https://shittycodingagent.ai/
+title: PI Coding Agent by Mario Zechner
+anchor: Minimalist Terminal-Based AI Coding Agent
+tags: [ai-agent, coding, terminal, pi-agent, mario-zechner]
+description: A minimal, terminal-based AI coding agent philosophy and implementation
+source_url: https://mariozechner.at/posts/2025-11-30-pi-coding-agent/
 ---
 
-## Pi Coding Agent
+## My Reference
 
-A highly customizable and lean coding agent that could serve as an alternative orchestration layer for Clawdbot.
+### Summary
+Mario Zechner introduces "pi" - a minimalist, terminal-based AI coding agent built with Claude, emphasizing simplicity over complex tooling. The agent runs in a tmux session with the model seeing terminal output directly, avoiding sophisticated context engineering in favor of raw terminal interaction.
 
-### Potential Use Cases
-- Lightweight task orchestration
-- Alternative to Claude Code/OpenCode for specific workflows
-- Modular integration with Clawdbot's agent system
+### Key Concepts
 
-### Notes from JB
-- Described as "very customizable and lean core"
-- Being evaluated for Clawdbot integration
+**Design Philosophy:**
+- Minimalism over complexity - pi just gives the model a tmux session
+- Direct terminal output visibility for the model
+- "You are the agent" approach - model executes commands, human observes
+- Inspired by Terminus 2 and the belief that context engineering hype is largely unfounded
+
+**Architecture:**
+- Claude as the model (Opus 4.5)
+- tmux for terminal session management
+- No sophisticated tool abstractions or context management
+- Model sees raw terminal output, not UI-wrapped responses
+
+**Context Gathering:**
+- Using sub-agents mid-session signals poor planning
+- Better to gather context first, create artifacts for later use
+- pi can spawn itself via bash if needed
+
+**Performance:**
+- Benchmarked on Terminal-Bench 2.0 against Codex, Cursor, Windsurf, and other harnesses
+- Competitive results despite minimal tooling
+- Hundreds of exchanges in single sessions without context compaction
+
+**Why Minimalism Works:**
+- Terminal provides natural structure through prompts and command output
+- Context engineering posts may be overthinking the problem
+- The terminal itself provides the necessary scaffolding
+
+**Lessons for Other Harnesses:**
+- Simplicity can outperform complexity
+- Context engineering may be less important than assumed
+- Raw terminal visibility can replace sophisticated tooling
