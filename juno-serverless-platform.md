@@ -1,7 +1,7 @@
 ---
-title: Juno - Serverless Apps with Self-Hosting Control
+title: Juno - WASM Container Hosting Platform
 anchor: Open-source serverless platform on ICP with WASM containers
-tags: [juno, serverless, internet-computer, icp, wasm, web3, hosting, self-hosting]
+tags: [juno, serverless, internet-computer, icp, wasm, web3, hosting, self-hosting, wasm-containers]
 description: Juno is an open-source serverless platform to build, deploy, and run apps in WASM containers with complete ownership and zero DevOps
 source_url: https://juno.build/
 github: https://github.com/junobuild/juno
