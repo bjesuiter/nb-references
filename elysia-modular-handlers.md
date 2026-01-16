@@ -1,9 +1,10 @@
 ---
 title: Modular Handlers in Elysia - Type-Safe Patterns
 anchor: Writing modularized, type-safe handlers in Elysia correctly
-tags: [elysia, bun, typescript, handlers, modular, plugin, encapsulation]
+tags: [elysia, bun, typescript, handlers, modular, plugin, encapsulation, type-safety, jwt]
 description: Guide for writing modular handlers in Elysia with proper type safety, scope control, and plugin architecture
 source_url: https://elysiajs.com/
+reference_url: https://daviddalbusco.com/blog/how-to-type-modularized-handlers-in-elysia/
 ---
 
 ## Overview
@@ -196,13 +197,105 @@ const user = new Elysia()
 - **Error types**: Automatic error response typing
 - **IDE support**: Autocomplete for request/response types
 
-## Related Documentation
+---
 
-- **Encapsulation**: https://elysiajs.com/tutorial/getting-started/encapsulation.md
-- **Plugin**: https://elysiajs.com/tutorial/getting-started/plugin.md
-- **Guard/Validation**: https://elysiajs.com/tutorial/getting-started/guard.md
-- **Lifecycle**: https://elysiajs.com/tutorial/getting-started/life-cycle.md
-- **TypeBox**: https://elysiajs.com/patterns/typebox.md
+## Detailed: Typing Modularized Handlers
+
+*Thanks to [David Dal Busco](https://daviddalbusco.com/blog/how-to-type-modularized-handlers-in-elysia/) for this comprehensive guide.*
+
+### The Problem
+
+When you extract a handler from an inline route, you lose type safety:
+
+```typescript
+import { Elysia, t } from "elysia";
+
+// ❌ Body becomes 'any' - no type safety!
+const handler = ({ body }) => {
+  const { hello } = body;  // TS7031: Binding element body implicitly has an any type
+};
+
+const app = new Elysia()
+  .get("/", handler, {
+    body: t.Object({ hello: t.String() })
+  })
+  .listen(3000);
+```
+
+### Solution: Use Context with Generic
+
+```typescript
+import { type Context, Elysia, t } from "elysia";
+
+const HandlerSchema = t.Object({
+  hello: t.String()
+});
+
+// Extract the static type from TypeBox schema
+type Handler = (typeof HandlerSchema)["static"];
+
+// Use Context<{ body: Handler }> to type the extracted handler
+const handler = ({ body }: Context<{ body: Handler }>) => {
+  const { hello } = body;  // ✅ Fully typed!
+};
+
+const app = new Elysia()
+  .get("/", handler, {
+    body: HandlerSchema
+  })
+  .listen(3000);
+```
+
+### With JWT Plugin
+
+JWT is not part of core Context — you need to extend it:
+
+```typescript
+import { jwt, type JWTPayloadInput, type JWTPayloadSpec } from "@elysiajs/jwt";
+import { type Context, Elysia, type RouteSchema, t } from "elysia";
+
+const HandlerSchema = t.Object({
+  hello: t.String()
+});
+
+type Handler = (typeof HandlerSchema)["static"];
+
+// Extend Context with JWT methods
+type JwtContext<Route extends RouteSchema = RouteSchema> = Context<Route> & {
+  jwt: {
+    sign(payload: JWTPayloadInput & Record<string, any>): Promise<string>;
+    verify(jwt?: string): Promise<(JWTPayloadSpec & Record<string, any>) | false>;
+  };
+};
+
+// Handler now has both body types AND jwt typing
+const handler = async ({ jwt, status, cookie: { auth }, body }: JwtContext<{ body: Handler }>) => {
+  if (!auth?.value) return status(401, "Unauthorized");
+
+  const profile = await jwt.verify(auth.value);
+  return { hello: body.hello, profile };
+};
+
+const app = new Elysia()
+  .use(
+    jwt({
+      name: "jwt",
+      secret: "yolo"
+    })
+  )
+  .get("/profile", handler, {
+    body: HandlerSchema
+  })
+  .listen(3000);
+```
+
+### Key Steps Summary
+
+1. **Define your schema** using `t.Object()`, `t.String()`, etc.
+2. **Extract static type**: `type Handler = (typeof Schema)["static"]`
+3. **Create typed context**: `Context<{ body: Handler }>`
+4. **For plugins** (like JWT), extend the context type
+5. **Use generic parameter** to specify route schema
 
 ## JB's Notes
 
@@ -212,3 +305,14 @@ Key takeaways for modular Elysia handlers:
 3. **Plugins are just Elysia instances** — compose with `.use()`
 4. **TypeBox for validation** — end-to-end type safety
 5. **Configurable plugins** — factory functions for dynamic config
+6. **Extract types from schemas** — `type Handler = (typeof Schema)["static"]`
+7. **Extend Context for plugins** — like JWT, cookies, etc.
+
+## Related Documentation
+
+- **Encapsulation**: https://elysiajs.com/tutorial/getting-started/encapsulation.md
+- **Plugin**: https://elysiajs.com/tutorial/getting-started/plugin.md
+- **Guard/Validation**: https://elysiajs.com/tutorial/getting-started/guard.md
+- **Lifecycle**: https://elysiajs.com/tutorial/getting-started/life-cycle.md
+- **TypeBox**: https://elysiajs.com/patterns/typebox.md
+- **David Dal Busco's Guide**: https://daviddalbusco.com/blog/how-to-type-modularized-handlers-in-elysia/
