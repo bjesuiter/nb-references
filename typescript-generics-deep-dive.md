@@ -1,34 +1,46 @@
 ---
-title: Understanding TypeScript Generics Deeply
-anchor: Deep dive resources for TypeScript generics
-tags: [typescript, generics, types, programming, deep-dive]
-description: Resources for understanding TypeScript generics at a deeper level
-source_url: https://bsky.app/profile/una.im/post/3mckobpozms2z
+title: Making Sense of TypeScript Generics
+anchor: TypeScript generics as type variables (not annotations)
+tags: [typescript, generics, types, programming]
+description: Artem Zakharchenko's guide to understanding generics as type variables
+source_url: https://kettanaito.com/blog/making-sense-of-typescript-generics
 ---
 
-## From Una Kravets (@una.im)
+## Key Insight
 
-Una Kravets (CSS Dev Rel at Google) shares insights on TypeScript generics.
+Generics aren't type annotations - they're **type variables** that get assigned when you call the function.
 
-## Key Concepts (from complementary resources)
+```typescript
+function print<MessageType>(msg: MessageType): MessageType {}
+//        ↑ stores the type     ↑ uses the stored type as return
+```
 
-### Why Generics Matter
-- Write reusable, type-safe code
-- Preserve type information through functions
-- Create flexible APIs without losing type safety
+## How Type Inference Works
 
-### Deep Dive Topics
-- Generic inference mechanics
-- Constraints and `extends`
-- Conditional types with generics
-- Generic defaults
-- Mapped types with generics
-- Template literal types
+- Pass `"hello"` → TypeScript infers `MessageType = 'hello'` (literal type, not just `string`)
+- Pass `42` → Infers `MessageType = 42`
+- Return type matches whatever you passed in
 
-### Complementary Resources
-- [Making Sense of TypeScript Generics](https://kettanaito.com/blog/making-sense-of-typescript-generics) - Artem Zakharchenko's blog post
-- TypeScript Handbook: Generics section
-- Effective TypeScript book by Dan Vanderkam
+## Constraints
 
-## Notes
-Una's approach focuses on practical understanding and real-world usage patterns.
+Use `extends` to limit accepted types:
+
+```typescript
+function print<T extends string | number>(msg: T): T {}
+```
+
+## Conditional Types
+
+Different behavior based on the generic's value:
+
+```typescript
+T extends string ? T : void  // Return T if string, void otherwise
+```
+
+## The Mental Model Shift
+
+Once you see generics as "variables for types" instead of annotations, everything clicks.
+
+## Complementary Resource
+
+- [Una Kravets on TypeScript Generics](https://bsky.app/profile/una.im/post/3mckobpozms2z)
