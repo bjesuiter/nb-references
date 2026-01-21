@@ -1,5 +1,5 @@
 ---
-title: DocSetQuery - Apple Documentation Tool for Agents
+title: DocSetQuery - Apple/SwiftUI Documentation Tool for Agents
 anchor: Local-first Apple documentation extraction for agent workflows
 tags: [apple, documentation, ios, macos, docset, agents, dash, docc]
 description: Tooling for agents to create markdown documentation from DocSet bundles - avoids scraping Apple docs every time
