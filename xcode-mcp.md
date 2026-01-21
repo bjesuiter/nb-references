@@ -25,6 +25,10 @@ Xcode MCP (Model Context Protocol) - A tool that enables AI coding agents to int
 
 - [Paul Solt - Xcode MCP Demo](https://www.youtube.com/watch?v=wdH8hWddb7I)
 
+### Official Website
+
+- [xcodebuildmcp.com](https://www.xcodebuildmcp.com/)
+
 ### Related
 
 - See also: `x-paulsolt-codex-like-steipete-todo.md` (other Paul Solt reference)
