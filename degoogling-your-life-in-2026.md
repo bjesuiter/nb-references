@@ -1,7 +1,7 @@
 ---
-title: Googling Your Life in 2026
-anchor: Presentation on personal data and privacy in 2026
-tags: [privacy, data, google, surveillance, quantified-self, presentation]
+title: deGoogling Your Life in 2026
+anchor: Presentation on personal data privacy and de-Googling in 2026
+tags: [privacy, data, google, degoogle, surveillance, quantified-self, presentation]
 description: Presentation slide showing comprehensive data categories tech companies might have about you
 source_url: 
 ---
@@ -9,7 +9,7 @@ source_url:
 ## My Reference
 
 ### Summary
-A presentation about "Googling your life in 2026" - visualizing how much personal data is collected and what a comprehensive data profile might look like.
+A presentation about "deGoogling your life in 2026" - visualizing how much personal data is collected and what a comprehensive data profile might look like, with a call to action to reclaim your data privacy.
 
 ### Data Categories Shown
 - **Core Tracking:** Search history, Location history, YouTube watch history
