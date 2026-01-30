@@ -16,6 +16,20 @@ Building an auto-DJ requires several audio analysis capabilities:
 
 ### Key Libraries & Tools
 
+**audioFlux (Python/C)**
+- **GitHub:** https://github.com/libAudioFlux/audioFlux
+- **Website:** https://audioflux.top/
+- **Description:** Deep learning tool library for audio and music analysis with 60+ TF transforms
+- **Key Features:**
+  - **Transforms:** BFT, CWT, NSGT, CQT, VQT, STFT, DWT, WPT, SWT + reassignment/synchrosqueezing
+  - **Scales:** Linear, Mel, Bark, Erb, Log, Octave, Linspace
+  - **Features:** Spectral, Cepstrum, Chroma, Deconvolution
+  - **MIR:** Pitch detection (YIN, STFT, etc.), Onset detection, HPSS (source separation)
+  - **ML:** PitchShift, TimeStretch algorithms
+- **Installation:** `pip install audioflux` or `conda install -c tanky20 -c conda-forge audioflux`
+- **Cross-platform:** Linux, macOS, Windows, iOS, Android
+- **Use cases:** Classification, separation, MIR, ASR, DJ analysis
+
 **Essentia (C++/Python)**
 - **Website:** https://essentia.upf.edu/
 - **Algorithms:**
