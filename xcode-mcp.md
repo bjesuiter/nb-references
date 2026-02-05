@@ -1,34 +1,34 @@
 ---
-title: Xcode MCP - AI Agent Integration for Xcode
-anchor: Xcode MCP for iOS/macOS development with AI agents
-tags: [mcp, xcode, ios, macos, ai-agent, development, x-com]
-description: Model Context Protocol integration for Xcode by Paul Solt - enables AI agents to access Xcode for iOS/iPadOS/macOS app development
-source_url: https://x.com/paulsolt/status/2013368368196452727
+title: Apple Xcode MCP Tools
+anchor: Xcode Model Context Protocol tools for AI coding assistants - documentation search, SwiftUI previews, compiler diagnostics
+tags: [xcode, apple, mcp, swift, swiftui, development-tools, ai-assistant]
+description: Apple Xcode MCP offers powerful tools for AI coding assistants
+source_url: https://developer.apple.com/xcode/mcp/
 ---
 
-## Reference
+## Summary
 
-**Source:** Paul Solt on X.com
-**URL:** https://x.com/paulsolt/status/2013368368196452727
+Apple's Xcode MCP (Model Context Protocol) provides powerful tools for AI coding assistants integrated into Xcode.
 
-### Summary
+### Notable Tools
 
-Xcode MCP (Model Context Protocol) - A tool that enables AI coding agents to interact with Xcode for building iOS, iPadOS, and macOS applications.
+**DocumentationSearch**
+- Amazing capability for searching Apple documentation directly from AI assistants
 
-### Key Points
+**RenderPreview**
+- Renders SwiftUI previews directly in the conversation
+- Allows AI to visualize SwiftUI components without running the app
 
-- Provides Xcode access for AI agents via MCP protocol
-- Useful for iOS/macOS app development with Claude Code, Codex, OpenCode, etc.
-- Enables programmatic control of Xcode from AI agents
+**RefreshCodeIssuesInFile**
+- Checks *current* compiler diagnostics
+- Verifies syntax without a rebuild
+- Fast feedback loop for AI-generated code
 
-### Video Tutorial
+### Benefits
+- AI assistants can verify Swift code correctness in real-time
+- Direct access to Apple documentation during coding
+- Visual feedback for SwiftUI components
+- No need to switch between tools for verification
 
-- [Paul Solt - Xcode MCP Demo](https://www.youtube.com/watch?v=wdH8hWddb7I)
-
-### Official Website
-
-- [xcodebuildmcp.com](https://www.xcodebuildmcp.com/)
-
-### Related
-
-- See also: `x-paulsolt-codex-like-steipete-todo.md` (other Paul Solt reference)
+### Integration
+Available through Xcode's MCP integration, allowing AI coding assistants (Claude Code, OpenCode, etc.) to access Xcode's internal tools and documentation.
