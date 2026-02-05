@@ -3,7 +3,8 @@ title: MistralAI Voxtral Transcribe 2 - Audio to Text
 anchor: When you need high-quality, low-latency speech-to-text transcription with speaker diarization
 tags: [audio-transcription, mistralai, speech-to-text, ai, realtime-transcription]
 description: MistralAI's Voxtral Transcribe 2 offers state-of-the-art transcription quality with speaker diarization and ultra-low latency
-source_url: https://mistral.ai/news/voxtral-transcribe-2
+source_url: https://x.com/simonw/status/2019116012969554214?s=46&t=NFfNAU_RiPYF1ZaXZxJ7qA
+original_source: https://mistral.ai/news/voxtral-transcribe-2
 ---
 
 ## My Reference
