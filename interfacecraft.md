@@ -1,8 +1,8 @@
 ---
 title: Interface Craft - Design with Uncommon Care
 anchor: Resource for thoughtful interface design, timeless products, and unreasonable consideration in UI/UX
-tags: [design, ui, ux, interface, craftsmanship, patterns]
-description: A working library for committed designers creating timeless, loved products
+tags: [design, ui, ux, interface, craftsmanship, patterns, paid-resource]
+description: A working library for committed designers creating timeless, loved products - PAID RESOURCE
 source_url: https://www.interfacecraft.dev/
 ---
 
