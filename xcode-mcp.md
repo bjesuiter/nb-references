@@ -1,34 +1,79 @@
 ---
-title: Apple Xcode MCP Tools
-anchor: Xcode Model Context Protocol tools for AI coding assistants - documentation search, SwiftUI previews, compiler diagnostics
-tags: [xcode, apple, mcp, swift, swiftui, development-tools, ai-assistant]
-description: Apple Xcode MCP offers powerful tools for AI coding assistants
-source_url: https://developer.apple.com/xcode/mcp/
+title: Xcode MCP Tools - External Client Integration
+anchor: Using Xcode 26.3 MCP tools from Cursor, Claude Code, and Codex
+tags: [xcode, mcp, cursor, claude-code, codex, apple, ide]
+description: Guide to using Xcode's native AI tools from external MCP clients
+source_url: https://rudrank.com/exploring-xcode-using-mcp-tools-cursor-external-clients
 ---
 
 ## Summary
 
-Apple's Xcode MCP (Model Context Protocol) provides powerful tools for AI coding assistants integrated into Xcode.
+Xcode 26.3 exposes 20 native MCP tools that can be used from external clients like Cursor, Claude Code, and Codex via the `mcpbridge` binary.
 
-### Notable Tools
+## Setup
 
-**DocumentationSearch**
-- Amazing capability for searching Apple documentation directly from AI assistants
+### Enable in Xcode
+1. Open Xcode > Settings (⌘,)
+2. Select Intelligence
+3. Toggle "Model Context Protocol" → Xcode Tools on
 
-**RenderPreview**
-- Renders SwiftUI previews directly in the conversation
-- Allows AI to visualize SwiftUI components without running the app
+### Claude Code
+```bash
+claude mcp add --transport stdio xcode -- xcrun mcpbridge
+```
 
-**RefreshCodeIssuesInFile**
-- Checks *current* compiler diagnostics
-- Verifies syntax without a rebuild
-- Fast feedback loop for AI-generated code
+### Codex
+```bash
+codex mcp add xcode -- xcrun mcpbridge
+```
 
-### Benefits
-- AI assistants can verify Swift code correctness in real-time
-- Direct access to Apple documentation during coding
-- Visual feedback for SwiftUI components
-- No need to switch between tools for verification
+### Cursor (3 Options)
 
-### Integration
-Available through Xcode's MCP integration, allowing AI coding assistants (Claude Code, OpenCode, etc.) to access Xcode's internal tools and documentation.
+**Option 1:** One-click link → `cursor://anysphere.cursor-deeplink/mcp/install?name=xcode-tools&config=...`
+
+**Option 2:** Settings > Features > MCP > Add Server > stdio
+- Name: `xcode-tools`
+- Command: `xcrun mcpbridge`
+
+**Option 3:** `~/.cursor/mcp.json`
+```json
+{
+  "mcpServers": {
+    "xcode-tools": {
+      "command": "xcrun",
+      "args": ["mcpbridge"]
+    }
+  }
+}
+```
+
+## Xcode MCP Tools (20 Total)
+
+| Category | Tools |
+|----------|-------|
+| **File Ops** | XcodeRead, XcodeWrite, XcodeUpdate, XcodeGlob, XcodeGrep, XcodeLS, XcodeMakeDir, XcodeRM, XcodeMV |
+| **Build/Test** | BuildProject, GetBuildLog, RunAllTests, RunSomeTests, GetTestList |
+| **Diagnostics** | XcodeListNavigatorIssues, XcodeRefreshCodeIssuesInFile |
+| **Execution** | ExecuteSnippet, RenderPreview |
+| **Docs** | DocumentationSearch (powered by Squirrel MLX embeddings) |
+| **UI** | XcodeListWindows |
+
+## Known Issue: Cursor Schema Error
+
+**Error:** `MCP error -32600: Tool XcodeListWindows has an output schema but did not return structuredContent`
+
+Xcode 26.3 RC returns `content` instead of `structuredContent` (Apple partnership clients handle this, Cursor doesn't).
+
+**Fix:** Use wrapper script at `~/bin/mcpbridge-wrapper` that copies `content` → `structuredContent`, then update Cursor config to use the wrapper.
+
+## Workflow
+
+1. Open project in Xcode: `open MyApp.xcodeproj`
+2. MCP client auto-discovers window via `XcodeListWindows`
+3. Agent uses `tabIdentifier` for all subsequent operations
+4. Ask: "Build my project" → auto-builds, returns result + timing
+
+## Permission
+
+First connection prompts an Apple permission dialog — click "Allow".
+
