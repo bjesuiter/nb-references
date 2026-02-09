@@ -1,8 +1,8 @@
 ---
 title: Skyboard - ATProtocol Kanban Board
-anchor: Trello-like kanban boards built on ATProtocol with Bluesky integration
-tags: [atproto, bsky, kanban, board, trello, bluesky, social]
-description: Skyboard is a Trello-like kanban board application built on ATProtocol with Bluesky integration
+anchor: GitHub Projects alternative - Trello-like kanban boards built on ATProtocol with Bluesky integration
+tags: [atproto, bsky, kanban, board, trello, bluesky, social, github-projects, alternative]
+description: Skyboard is a Trello-like kanban board application and GitHub Projects alternative built on ATProtocol with Bluesky integration
 source_url: https://skyboard.dev/
 ---
 
