@@ -1,8 +1,8 @@
 ---
-title: "Qwen3-TTS - Voice Cloning & Voice Design"
-anchor: "Open-source TTS from Alibaba with 3-second voice cloning"
-tags: [tts, voice-cloning, qwen, alibaba, speech-synthesis, ai-audio, open-source]
-description: "Alibaba's Qwen3-TTS enables 3-second voice cloning from audio clips"
+title: "Qwen3-TTS - Voice Cloning & Voice Design (macOS MLX)"
+anchor: "Open-source TTS from Alibaba with 3-second voice cloning - fast on Apple Silicon via MLX"
+tags: [tts, voice-cloning, qwen, alibaba, speech-synthesis, ai-audio, open-source, macos, apple-silicon, mlx]
+description: "Alibaba's Qwen3-TTS enables 3-second voice cloning from audio clips, now with fast MLX inference on macOS"
 source_url: "https://github.com/QwenLM/Qwen3-TTS"
 ---
 
@@ -16,6 +16,28 @@ Qwen3-TTS is an open-source text-to-speech model series by Alibaba's Qwen team, 
 - **Multi-language**: Supports 10 languages (Chinese, English, Japanese, Korean, German, French, Russian, Portuguese, Spanish, Italian)
 - **Low latency**: 97ms end-to-end synthesis latency
 - **Streaming**: Real-time streaming generation support
+
+### macOS MLX Fast Inference
+There's a dedicated Apple Silicon port for fast local inference on M1/M2/M3/M4 Macs:
+
+**Repository**: https://github.com/kapi2800/qwen3-tts-apple-silicon
+
+**Features**:
+- Uses Apple's MLX framework for GPU inference
+- Runs natively on Apple Neural Engine and GPU
+- Better performance with less heat and battery drain
+- 100% offline, no cloud API needed
+- Supports voice cloning and custom voices
+
+**Setup**:
+```bash
+git clone https://github.com/kapi2800/qwen3-tts-apple-silicon.git
+cd qwen3-tts-apple-silicon
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+brew install ffmpeg
+```
 
 ### Models Available
 | Model | Size | Features |
