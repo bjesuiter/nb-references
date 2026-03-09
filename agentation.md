@@ -31,6 +31,10 @@ Agents can find and fix code much faster when they know exactly which element yo
 - Use text selection — for typos or content issues, select the exact text
 - Pause animations — to annotate a specific animation frame
 
+## Limitations
+
+- **Only works for Next.js apps** 😔
+
 ## Why It Matters
 
 Without Agentation, you'd have to describe the element ("the blue button in the sidebar") and hope the agent guesses right. With Agentation, you give it `.sidebar > .nav-actions > button.primary` and it can grep for that directly.
